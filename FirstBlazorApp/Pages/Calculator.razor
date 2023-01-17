@@ -1,0 +1,203 @@
+﻿@page "/Calculator"
+
+<h3>Calculator</h3>
+
+
+<div class="container">
+    
+    <div class="calculator">
+        <div class="calculator__display">@textBox</div>
+
+        <div class="calculator__keys">
+            <button @onclick="Plus" class="key--operator" data-action="add">+</button>
+            <button @onclick="Minus" class="key--operator" data-action="subtract">-</button>
+            <button @onclick="Multiply" class="key--operator" data-action="multiply">&times;</button>
+            <button @onclick="Divide" class="key--operator" data-action="divide">÷</button>
+            <button @onclick="addSeven">7</button>
+            <button @onclick="addEight">8</button>
+            <button @onclick="addNine">9</button>
+            <button @onclick="addFour">4</button>
+            <button @onclick="addFive">5</button>
+            <button @onclick="addSix">6</button>
+            <button @onclick="addOne">1</button>
+            <button @onclick="addTwo">2</button>
+            <button @onclick="addThree">3</button>
+            <button @onclick="addZero">0</button>
+            <button @onclick="addDot" data-action="decimal">.</button>
+            <button @onclick="Clear" data-action="clear">AC</button>
+            <button @onclick="Calculate" class="key--equal" data-action="calculate">=</button>
+        </div>
+    </div>
+</div>
+
+@code {
+    private double firstValue { get; set; }
+    private double secondValue { get; set; }
+    private string operators{ get; set; }
+    string textBox = "0";
+
+    private void addZero()
+    {
+        if (textBox == "0")
+        {
+            textBox = "0";
+        }
+        else textBox += 0;
+    }
+
+    private void addOne()
+    {
+        if (textBox == "0")
+        {
+            textBox = "1";
+        }
+        else textBox += 1;
+    }
+
+    private void addTwo()
+    {
+        if (textBox == "0")
+        {
+            textBox = "2";
+        }
+        else textBox += 2;
+    }
+    private void addThree()
+    {
+        if (textBox == "0")
+        {
+            textBox = "3";
+        }
+        else textBox += 3;
+    }
+    private void addFour()
+    {
+        if (textBox == "0")
+        {
+            textBox = "4";
+        }
+        else textBox += 4;
+    }
+    private void addFive()
+    {
+        if (textBox == "0")
+        {
+            textBox = "5";
+        }
+        else textBox += 5;
+    }
+    private void addSix()
+    {
+        if (textBox == "0")
+        {
+            textBox = "6";
+        }
+        else textBox += 6;
+    }
+    private void addSeven()
+    {
+        if (textBox == "0")
+        {
+            textBox = "7";
+        }
+        else textBox += 7;
+    }
+    private void addEight()
+    {
+        if (textBox == "0")
+        {
+            textBox = "8";
+        }
+        else textBox += 8;
+    }
+    private void addNine()
+    {
+        if (textBox == "0")
+        {
+            textBox = "9";
+        }
+        else textBox += 9;
+    }
+    private void addDot()
+    {
+        if (!textBox.Contains("."))
+        {
+            textBox += ".";
+        }
+    }
+    private void Clear()
+    {
+        textBox = "0";
+        firstValue = 0;
+        secondValue = 0;
+    }
+
+    private void Calculate()
+    {
+        if (secondValue == 0.0)
+        {
+            secondValue = double.Parse(textBox);
+        }
+        switch (operators)
+        {
+            case "+":
+                {
+                    textBox = (firstValue + secondValue).ToString();
+                    firstValue = double.Parse(textBox);
+                    break;
+                }
+            case "-":
+                {
+                    textBox = (firstValue - secondValue).ToString();
+                    firstValue = double.Parse(textBox);
+                    break;
+                }
+            case "/":
+                {
+                    textBox = (firstValue / secondValue).ToString();
+                    firstValue = double.Parse(textBox);
+                    break;
+                }
+            case "*":
+                {
+                    textBox = (firstValue * secondValue).ToString();
+                    firstValue = double.Parse(textBox);
+                    break;
+                }
+            case "%":
+                {
+                    textBox = (firstValue % secondValue).ToString();
+                    firstValue = double.Parse(textBox);
+                    break;
+                }
+        }
+    }
+    private void Plus()
+    {
+        firstValue = double.Parse(textBox);
+        textBox = "0";
+        operators = "+";
+    }
+    private void Minus()
+    {
+        firstValue = double.Parse(textBox);
+        textBox = "0";
+        operators = "-";
+    }
+    private void Divide()
+    {
+        firstValue = double.Parse(textBox);
+        textBox = "0";
+        operators = "/";
+    }
+    private void Multiply()
+    {
+        firstValue = double.Parse(textBox);
+        textBox = "0";
+        operators = "*";
+    }
+
+
+
+
+}
