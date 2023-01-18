@@ -1,0 +1,16 @@
+﻿@using FirstBlazorApp.Data
+
+<tr>
+    <td>@GroceryItem!.Name</td>
+    <td>@GroceryItem.Price</td>
+    <td>
+        <button class="btn-sm float-right">
+            + Add 100
+        </button>
+    </td>
+</tr>
+
+@code {
+    [Parameter]
+    public Grocery? GroceryItem { get; set; }
+}
