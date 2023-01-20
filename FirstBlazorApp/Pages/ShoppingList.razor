@@ -13,7 +13,7 @@
     </tr>
     @foreach (var grocery in groceries)
     {
-        <Item GroceryItem="@grocery"/>
+        <Item GroceryItem="@grocery" OnGroceryPriceIncreased="OnGroceryPriceIncreased" />
         
     }
 </table>
@@ -31,10 +31,21 @@
         if (!string.IsNullOrWhiteSpace(groceryName) && groceryPrice > 0)
         {
             groceries.Add(new Grocery(){Name = groceryName, Price = groceryPrice});
-            sum += groceryPrice;
+
             groceryName = String.Empty;
             groceryPrice = 0;
         }
+        UpdateTotalAmount();
+    }
+
+    public void UpdateTotalAmount()
+    {
+        sum = groceries.Sum(x => x.Price);
+    }
+
+    public void OnGroceryPriceIncreased()
+    {
+        UpdateTotalAmount();
     }
 
 }
